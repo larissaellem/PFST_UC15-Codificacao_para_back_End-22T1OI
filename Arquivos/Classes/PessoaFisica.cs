@@ -9,7 +9,32 @@ namespace UC15_Projetos.classes
 
     public bool ValidarDataNascimento(DateTime dataNascimento)
     {
-      throw new NotImplementedException();
+      DateTime dataAtual = DateTime.Today;
+      double anos = (dataAtual - dataNascimento).TotalDays / 365;
+
+      if (anos >= 18)
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+    public bool ValidarDataNascimento(string dataNascimento)
+    {
+
+      if (DateTime.TryParse(dataNascimento, out DateTime dataConvertida))
+      {
+        DateTime dataAtual = DateTime.Today;
+        double anos = (dataAtual - dataConvertida).TotalDays / 365;
+
+        if (anos >= 18)
+        {
+          return true;
+        }
+      }
+      return false;
     }
 
     public override float CalcularImposto()

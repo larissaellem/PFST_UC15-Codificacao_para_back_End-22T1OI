@@ -8,7 +8,7 @@ namespace UC15_Projetos.classes
 
     public int rendimento { get; set; }
 
-    public string? endereco { get; set; }
+    public Endereco? endereco { get; set; }
 
     public abstract float CalcularImposto();
   }
