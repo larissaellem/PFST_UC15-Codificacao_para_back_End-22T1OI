@@ -12,9 +12,27 @@ namespace UC15_Projetos.classes
       throw new NotImplementedException();
     }
 
-    public override float CalcularImposto(float rendimento)
+    public override float CalcularImposto()
     {
-      throw new NotImplementedException();
+      if (this.rendimento <= 3000)
+      {
+        return this.rendimento * 0.03f;
+      }
+
+      else if (this.rendimento > 3000 && this.rendimento <= 6000)
+      {
+        return this.rendimento * 0.05f;
+      }
+
+      else if (this.rendimento > 6000 && this.rendimento <= 10000)
+      {
+        return this.rendimento * 0.07f;
+      }
+
+      else
+      {
+        return this.rendimento * 0.09f;
+      }
     }
   }
 }

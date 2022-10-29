@@ -9,3 +9,9 @@ pessoaFisica.rendimento = 1000;
 pessoaFisica.endereco = "Rua 1, 123";
 
 Console.WriteLine($"Bem vindo {pessoaFisica.nome}! Seu CPF é {pessoaFisica.cpf} e sua data de nascimento é {pessoaFisica.dataNascimento.ToUniversalTime()}.");
+
+Console.WriteLine($"Você pagará um imposto no valor de R$ {pessoaFisica.CalcularImposto()}.");
+
+pessoaFisica.rendimento = 4000;
+
+Console.WriteLine($"Você pagará um imposto no valor de R$ {pessoaFisica.CalcularImposto()}.");
