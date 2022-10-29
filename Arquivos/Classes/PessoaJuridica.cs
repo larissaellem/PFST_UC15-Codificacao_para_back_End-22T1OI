@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using UC15_Projetos.Interfaces;
 namespace UC15_Projetos.classes
 {
@@ -7,9 +8,33 @@ namespace UC15_Projetos.classes
     public string? cnpj { get; set; }
     public string? razaoSocial { get; set; }
 
-    public bool ValidarCnpj(string cnpj)
+    public bool ValidarCnpj()
     {
-      throw new NotImplementedException();
+      if (this.cnpj == null)
+      {
+        return false;
+      }
+
+      bool cnpjValido = Regex.IsMatch(this.cnpj, @"^(\d{14}) | (\d{2}.\d{3}.\d{3}/\d{4}-\d{2})$");
+
+      if (cnpjValido)
+      {
+        string subStringCnpj14 = this.cnpj.Substring(8, 4);
+
+        if (subStringCnpj14 == "0001")
+        {
+          return true;
+        }
+
+      }
+      string subStringCnpj18 = this.cnpj.Substring(11, 4);
+
+      if (subStringCnpj18 == "0001")
+      {
+        return true;
+      }
+
+      return false;
     }
 
     public override float CalcularImposto()

@@ -35,3 +35,30 @@ Endereço: {pessoaFisica.endereco.logradouro}, {pessoaFisica.endereco.numero} - 
 CEP: {pessoaFisica.endereco.cep}
 Maior de idade? {pessoaFisica.ValidarDataNascimento(pessoaFisica.dataNascimento)}
 ");
+
+
+
+// pj
+PessoaJuridica pessoaJuridica = new PessoaJuridica();
+pessoaJuridica.cnpj = "13.456.789/0001-00";
+pessoaJuridica.razaoSocial = "Empresa Fantasia";
+pessoaJuridica.rendimento = 1000;
+pessoaJuridica.endereco = new Endereco();
+pessoaJuridica.endereco.logradouro = "Rua 20";
+pessoaJuridica.endereco.numero = 882;
+pessoaJuridica.endereco.complemento = "4 Andar, sala 10";
+pessoaJuridica.endereco.cep = "12345-678";
+pessoaJuridica.endereco.endComercial = true;
+
+Console.WriteLine($"\n=================\nBem vindo {pessoaJuridica.razaoSocial}! Seu CNPJ é {pessoaJuridica.cnpj}.");
+Console.WriteLine(@$"
+RELATÓRIO DE PESSOA JURÍDICA
+Razao Social: {pessoaJuridica.razaoSocial}
+CNPJ: {pessoaJuridica.cnpj}
+Rendimento: {pessoaJuridica.rendimento}
+Endereço: {pessoaJuridica.endereco.logradouro}, {pessoaJuridica.endereco.numero} - {pessoaJuridica.endereco.complemento}
+Endereço Comercial: {pessoaJuridica.endereco.endComercial}
+CEP: {pessoaJuridica.endereco.cep}
+Cpnj Valido: {pessoaJuridica.ValidarCnpj()}
+");
+
