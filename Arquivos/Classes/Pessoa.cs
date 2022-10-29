@@ -6,7 +6,7 @@ namespace UC15_Projetos.classes
   {
     public string? nome { get; set; }
 
-    public int rendimento { get; set; }
+    public float rendimento { get; set; }
 
     public Endereco? endereco { get; set; }
 
