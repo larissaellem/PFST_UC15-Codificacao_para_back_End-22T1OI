@@ -135,6 +135,7 @@ namespace UC15_Projetos
                   pessoaFisica.endereco.endComercial = endCom == "S" ? true : false;
 
                   listaPf.Add(pessoaFisica);
+                  pessoaFisica.Inserir();
 
                   Console.ForegroundColor = ConsoleColor.DarkGreen;
                   Console.WriteLine($"Cadastro realizado com sucesso");
@@ -201,15 +202,18 @@ namespace UC15_Projetos
 
             Console.Clear();
 
-            Console.WriteLine(@$"
-                        Nome: {pessoaJuridica.nome}
-                        Razão Social: {pessoaJuridica.razaoSocial}
-                        CNPJ: {pessoaJuridica.cnpj}
-                        CNPJ Válido: {pessoaJuridica.ValidarCnpj()}
-                        Endereço: {pessoaJuridica.endereco!.logradouro}, {pessoaJuridica.endereco.numero} - {pessoaJuridica.endereco.complemento}
-                        Imposto a ser pago: {pessoaJuridica.CalcularImposto().ToString("C", CultureInfo.CurrentCulture)}
-                        ");
+            pessoaJuridica.Inserir();
 
+            List<PessoaJuridica> exibirListaPj = pessoaJuridica.LerArquivo();
+            foreach (PessoaJuridica cadaItem in exibirListaPj)
+            {
+              Console.WriteLine(@$"
+                =================================
+                Nome: {cadaItem.nome}
+                Razão Social: {cadaItem.razaoSocial}
+                CNPJ: {cadaItem.cnpj}
+                CNPJ Válido: {cadaItem.ValidarCnpj()}");
+            }
 
             Console.WriteLine($"Aperte ENTER para continuar");
             Console.ReadLine();

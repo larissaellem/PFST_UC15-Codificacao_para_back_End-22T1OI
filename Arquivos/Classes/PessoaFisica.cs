@@ -6,6 +6,7 @@ namespace UC15_Projetos.classes
   {
     public string? cpf { get; set; }
     public DateTime dataNascimento { get; set; }
+    public string caminho { get; private set; } = "Database/PessoaFisica.csv";
 
     public bool ValidarDataNascimento(DateTime dataNascimento)
     {
@@ -58,6 +59,35 @@ namespace UC15_Projetos.classes
       {
         return this.rendimento * 0.05f;
       }
+    }
+
+    public void Inserir()
+    {
+
+      Utils.VerificarPastaArquivo(caminho);
+      string[] informacoes = { $"{this.nome},{this.cpf},{this.dataNascimento}" };
+      File.AppendAllLines(caminho, informacoes);
+    }
+
+    public List<PessoaFisica> LerArquivo()
+    {
+
+      List<PessoaFisica> listPf = new List<PessoaFisica>();
+      string[] linhas = File.ReadAllLines(caminho);
+
+      foreach (string cadaLinha in linhas)
+      {
+        string[] atributos = cadaLinha.Split(",");
+
+        PessoaFisica novoPf = new PessoaFisica();
+        novoPf.nome = atributos[0];
+        novoPf.cpf = atributos[1];
+        novoPf.dataNascimento = DateTime.TryParse(atributos[2], out DateTime dataConvertida) ? dataConvertida : DateTime.Now;
+
+        listPf.Add(novoPf);
+      }
+      return listPf;
+
     }
   }
 }

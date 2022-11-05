@@ -8,6 +8,8 @@ namespace UC15_Projetos.classes
     public string? cnpj { get; set; }
     public string? razaoSocial { get; set; }
 
+    public string caminho { get; private set; } = "Database/PessoaJuridica.csv";
+
     public bool ValidarCnpj()
     {
       if (this.cnpj == null)
@@ -58,6 +60,35 @@ namespace UC15_Projetos.classes
       {
         return this.rendimento * 0.09f;
       }
+    }
+
+    public void Inserir()
+    {
+
+      Utils.VerificarPastaArquivo(caminho);
+      string[] informacoes = { $"{this.nome},{this.cnpj},{this.razaoSocial}" };
+      File.AppendAllLines(caminho, informacoes);
+    }
+
+    public List<PessoaJuridica> LerArquivo()
+    {
+
+      List<PessoaJuridica> listPj = new List<PessoaJuridica>();
+      string[] linhas = File.ReadAllLines(caminho);
+
+      foreach (string cadaLinha in linhas)
+      {
+        string[] atributos = cadaLinha.Split(",");
+
+        PessoaJuridica novoPj = new PessoaJuridica();
+        novoPj.nome = atributos[0];
+        novoPj.cnpj = atributos[1];
+        novoPj.razaoSocial = atributos[2];
+
+        listPj.Add(novoPj);
+      }
+      return listPj;
+
     }
   }
 }
