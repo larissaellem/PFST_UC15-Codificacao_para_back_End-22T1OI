@@ -137,6 +137,11 @@ namespace UC15_Projetos
                   listaPf.Add(pessoaFisica);
                   pessoaFisica.Inserir();
 
+                  using (StreamWriter sw = new StreamWriter($"{pessoaFisica.nome}.txt"))
+                  {
+                    sw.WriteLine(pessoaFisica.nome);
+                  }
+
                   Console.ForegroundColor = ConsoleColor.DarkGreen;
                   Console.WriteLine($"Cadastro realizado com sucesso");
                   Console.ResetColor();
@@ -203,6 +208,10 @@ namespace UC15_Projetos
             Console.Clear();
 
             pessoaJuridica.Inserir();
+            using (StreamWriter sw = new StreamWriter($"{pessoaJuridica.nome}.txt"))
+            {
+              sw.WriteLine(pessoaJuridica.nome);
+            }
 
             List<PessoaJuridica> exibirListaPj = pessoaJuridica.LerArquivo();
             foreach (PessoaJuridica cadaItem in exibirListaPj)
